@@ -7,13 +7,9 @@ use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
-    public function index(Category $category = null)
+    public function index(Category $category)
     {
-        $transactions = Transaction::with('category')
-            ->when($category, function ($query) use ($category) {
-                $query->where('category_id', $category->id);
-            })
-            ->get();
+        $transactions = Transaction::with('category')->byCategory($category)->get();
 
         return view('transactions.index', [
             'transactions' => $transactions,

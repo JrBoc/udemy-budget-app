@@ -15,4 +15,11 @@ class Transaction extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeByCategory($query, Category $category)
+    {
+        $query->when($category->exists, function ($query) use ($category) {
+            $query->where('category_id', $category->id);
+        });
+    }
 }
