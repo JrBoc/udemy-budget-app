@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('transactions', [\App\Http\Controllers\TransactionController::class, 'index'])->name('transactions.index');
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
