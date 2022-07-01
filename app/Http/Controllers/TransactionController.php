@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionStoreRequest;
 use App\Models\Category;
 use App\Models\Transaction;
-use Illuminate\Http\Request;
 
 
 class TransactionController extends Controller
@@ -18,7 +18,7 @@ class TransactionController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(TransactionStoreRequest $request)
     {
         Transaction::create($request->all());
 

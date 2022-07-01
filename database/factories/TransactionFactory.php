@@ -14,7 +14,8 @@ class TransactionFactory extends Factory
     {
         return [
             'description' => $this->faker->sentence(2),
-            'category_id' => Category::factory(),
+            'category_id' => Category::factory()->create(),
+            'amount' => $this->faker->randomFloat(),
         ];
     }
 }
