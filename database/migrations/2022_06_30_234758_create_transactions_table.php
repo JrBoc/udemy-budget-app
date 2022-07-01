@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('description');
-            $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
         });
     }
