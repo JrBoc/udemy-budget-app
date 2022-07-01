@@ -73,5 +73,4 @@ class CreateTransactionTest extends TestCase
 
         return $this->post(route('transactions.store'), $transaction->toArray());
     }
-
 }

@@ -9,7 +9,7 @@
                         Create Transaction
                     </div>
                     <div class="card-body">
-                        <x-form action="{{ route('transactions.store') }}" method="post">
+                        <x-form action="{{ route('transactions.update', $transaction) }}" method="put">
                             @include('transactions._form')
                         </x-form>
                     </div>

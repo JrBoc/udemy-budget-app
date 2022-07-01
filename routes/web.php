@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
 Route::get('transactions/{category:slug?}', [TransactionController::class, 'index'])->name('transactions.index');
 Route::post('transactions/', [TransactionController::class, 'store'])->name('transactions.store');
+Route::get('transactions/{transaction}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
+Route::put('transactions/{transaction}', [TransactionController::class, 'update'])->name('transactions.update');
 
 Route::get('/', function () {
     return view('welcome');

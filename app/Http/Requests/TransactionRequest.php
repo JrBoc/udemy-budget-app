@@ -6,7 +6,7 @@ use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TransactionStoreRequest extends FormRequest
+class TransactionRequest extends FormRequest
 {
     public function rules(): array
     {
