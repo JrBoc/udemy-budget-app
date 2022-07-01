@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -17,7 +16,9 @@ class CreateTransactionTest extends TestCase
     /** @test */
     public function it_can_create_transaction()
     {
-        $transaction = Transaction::factory()->make();
+        $transaction = Transaction::factory()->make([
+            'user_id' => $this->user->id,
+        ]);
 
         $response = $this->post(route('transactions.store'), $transaction->toArray());
 

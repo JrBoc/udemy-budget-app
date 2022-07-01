@@ -22,4 +22,11 @@ class Transaction extends Model
             $query->where('category_id', $category->id);
         });
     }
+
+    public static function booted()
+    {
+        self::addGlobalScope('user', function ($query) {
+            $query->where('user_id', auth()->id());
+        });
+    }
 }

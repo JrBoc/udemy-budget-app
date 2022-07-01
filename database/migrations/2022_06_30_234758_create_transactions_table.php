@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('description');
             $table->unsignedBigInteger('category_id');
             $table->float('amount');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }
