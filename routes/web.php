@@ -20,6 +20,7 @@ Route::get('transactions/{category:slug?}', [TransactionController::class, 'inde
 Route::post('transactions/', [TransactionController::class, 'store'])->name('transactions.store');
 Route::get('transactions/{transaction}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
 Route::put('transactions/{transaction}', [TransactionController::class, 'update'])->name('transactions.update');
+Route::delete('transactions/{transaction}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
 
 Route::get('/', function () {
     return view('welcome');

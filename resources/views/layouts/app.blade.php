@@ -40,6 +40,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('transactions.create') }}">New Transaction</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach(\App\Models\Category::pluck('name', 'slug') as $slug => $name)
+                                <li><a class="dropdown-item" href="{{ route('transactions.index', $slug) }}">{{ $name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
