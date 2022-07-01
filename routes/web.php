@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
 Route::get('transactions/{category:slug?}', [TransactionController::class, 'index'])->name('transactions.index');
 Route::post('transactions/', [TransactionController::class, 'store'])->name('transactions.store');
 

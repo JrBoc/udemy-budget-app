@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TransactionStoreRequest;
 use App\Models\Category;
 use App\Models\Transaction;
+use Illuminate\Support\MessageBag;
 
 
 class TransactionController extends Controller
@@ -20,6 +21,13 @@ class TransactionController extends Controller
 
         return view('transactions.index', [
             'transactions' => $transactions,
+        ]);
+    }
+
+    public function create()
+    {
+        return view('transactions.create', [
+            'categories' => Category::pluck('name', 'id'),
         ]);
     }
 

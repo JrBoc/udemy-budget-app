@@ -28,5 +28,9 @@ class Transaction extends Model
         self::addGlobalScope('user', function ($query) {
             $query->where('user_id', auth()->id());
         });
+
+        static::saving(function (Transaction $transaction) {
+            $transaction->user_id = $transaction->user_id ? : auth()->id();
+        });
     }
 }
