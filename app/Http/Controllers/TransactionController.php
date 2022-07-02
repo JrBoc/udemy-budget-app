@@ -11,11 +11,6 @@ use Illuminate\Support\MessageBag;
 
 class TransactionController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index(Category $category)
     {
         $transactions = Transaction::with('category')
