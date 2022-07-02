@@ -18,9 +18,8 @@ class UpdateTransactionTest extends TestCase
         $transaction = Transaction::factory(['user_id' => $this->user])->create();
         $newTransaction = Transaction::factory(['user_id' => $this->user])->make();
 
-        $response = $this->put(route('transactions.update', $transaction), $newTransaction->toArray());
-
-        $response->assertRedirect(route('transactions.index'));
+        $response = $this->put(route('transactions.update', $transaction), $newTransaction->toArray())
+            ->assertRedirect(route('transactions.index'));
 
         $this->followRedirects($response)
             ->assertSee($newTransaction->description);
@@ -31,11 +30,8 @@ class UpdateTransactionTest extends TestCase
     {
         $transaction = Transaction::factory(['user_id' => $this->user])->create();
 
-        $response = $this->putTransaction($transaction, [
-            'description' => null,
-        ]);
-
-        $response->assertSessionHasErrors('description');
+        $this->putTransaction($transaction, ['description' => null])
+            ->assertSessionHasErrors('description');
     }
 
     /** @test */
@@ -43,11 +39,8 @@ class UpdateTransactionTest extends TestCase
     {
         $transaction = Transaction::factory(['user_id' => $this->user])->create();
 
-        $response = $this->putTransaction($transaction, [
-            'category_id' => null,
-        ]);
-
-        $response->assertSessionHasErrors('description');
+        $this->putTransaction($transaction, ['category_id' => null])
+            ->assertSessionHasErrors('description');
     }
 
     /** @test */
@@ -55,11 +48,8 @@ class UpdateTransactionTest extends TestCase
     {
         $transaction = Transaction::factory(['user_id' => $this->user])->create();
 
-        $response = $this->putTransaction($transaction, [
-            'amount' => null,
-        ]);
-
-        $response->assertSessionHasErrors('description');
+        $this->putTransaction($transaction, ['amount' => null])
+            ->assertSessionHasErrors('description');
     }
 
     /** @test */
@@ -67,11 +57,8 @@ class UpdateTransactionTest extends TestCase
     {
         $transaction = Transaction::factory(['user_id' => $this->user])->create();
 
-        $response = $this->putTransaction($transaction, [
-            'amount' => 'abc',
-        ]);
-
-        $response->assertSessionHasErrors('amount');
+        $this->putTransaction($transaction, ['amount' => 'abc'])
+            ->assertSessionHasErrors('amount');
     }
 
     private function putTransaction($transaction, $newTransaction = []): \Illuminate\Testing\TestResponse

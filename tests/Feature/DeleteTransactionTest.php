@@ -17,9 +17,8 @@ class DeleteTransactionTest extends TestCase
     {
         $transaction = Transaction::factory()->create(['user_id' => $this->user->id]);
 
-        $response = $this->delete(route('transactions.destroy', $transaction));
-
-        $response->assertRedirect(route('transactions.index'));
+        $response = $this->delete(route('transactions.destroy', $transaction))
+            ->assertRedirect(route('transactions.index'));
 
         $this->followRedirects($response)
             ->assertDontSee($transaction->description);
