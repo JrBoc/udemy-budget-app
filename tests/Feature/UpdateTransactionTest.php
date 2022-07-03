@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -15,8 +16,11 @@ class UpdateTransactionTest extends TestCase
     /** @test */
     public function it_can_update_transaction()
     {
-        $transaction = Transaction::factory(['user_id' => $this->user])->create();
-        $newTransaction = Transaction::factory(['user_id' => $this->user])->make();
+        $transaction = Transaction::factory($user = ['user_id' => $this->user])
+            ->for(Category::factory()->state($user))
+            ->create();
+
+        $newTransaction = Transaction::factory()->make(['user_id' => $this->user]);
 
         $response = $this->put(route('transactions.update', $transaction), $newTransaction->toArray())
             ->assertRedirect(route('transactions.index'));

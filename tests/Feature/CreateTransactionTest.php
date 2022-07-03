@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,9 +17,11 @@ class CreateTransactionTest extends TestCase
     /** @test */
     public function it_can_create_transaction()
     {
-        $transaction = Transaction::factory()->make([
-            'user_id' => $this->user->id,
-        ]);
+        $transaction = Transaction::factory()
+            ->for(Category::factory()->state(['user_id' => $this->user]))
+            ->make([
+                'user_id' => $this->user,
+            ]);
 
         $response = $this->post(route('transactions.store'), $transaction->toArray())
             ->assertRedirect(route('transactions.index'));
@@ -56,7 +59,9 @@ class CreateTransactionTest extends TestCase
 
     private function postTransaction($overwrites = []): \Illuminate\Testing\TestResponse
     {
-        $transaction = Transaction::factory()->make($overwrites);
+        $transaction = Transaction::factory()
+            ->for(Category::factory()->state(['user_id' => $this->user]))
+            ->make($overwrites);
 
         return $this->post(route('transactions.store'), $transaction->toArray());
     }
