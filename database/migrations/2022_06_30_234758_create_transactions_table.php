@@ -14,6 +14,18 @@ return new class extends Migration {
             $table->float('amount');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 
