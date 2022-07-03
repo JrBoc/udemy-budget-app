@@ -34,17 +34,32 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('transactions.index') }}">All Transaction</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Transactions
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('transactions.index') }}">All Transaction</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('transactions.create') }}">New Transaction</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('transactions.create') }}">New Transaction</a>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Categories
                         </a>
                         <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('categories.index') }}">Manage Categories</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('categories.create') }}">New Category</a>
+                            </li>
+                            <li class="dropdown-divider"></li>
                             @foreach(\App\Models\Category::pluck('name', 'slug') as $slug => $name)
                                 <li><a class="dropdown-item" href="{{ route('transactions.index', $slug) }}">{{ $name }}</a></li>
                             @endforeach
