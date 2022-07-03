@@ -30,15 +30,7 @@ class CreateCategoryTest extends TestCase
     /** @test */
     public function it_cannot_create_transactions_without_a_name()
     {
-        $this->postCategory(['name' => null])
+        $this->post(route('categories.store'), ['name' => null])
             ->assertSessionHasErrors('name');
-    }
-
-    private function postCategory($overwrites = []): \Illuminate\Testing\TestResponse
-    {
-        $transaction = Category::factory()
-            ->make($overwrites);
-
-        return $this->post(route('categories.store'), $transaction->toArray());
     }
 }

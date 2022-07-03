@@ -28,5 +28,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/transactions', TransactionController::class)->except(['index', 'show']);
     Route::get('transactions/{category:slug?}', [TransactionController::class, 'index'])->name('transactions.index');
 
-    Route::resource('/categories', CategoryController::class);
+    Route::resource('/categories', CategoryController::class)->except('edit');
+    Route::get('categories/{category:slug}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 });

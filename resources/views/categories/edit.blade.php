@@ -6,10 +6,10 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        Create Category
+                        Edit Category
                     </div>
                     <div class="card-body">
-                        <x-form action="{{ route('categories.store') }}" method="post">
+                        <x-form action="{{ route('categories.update', $category) }}" method="put">
                             @include('categories._form')
                         </x-form>
                     </div>

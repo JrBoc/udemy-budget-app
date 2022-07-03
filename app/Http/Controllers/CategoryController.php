@@ -26,4 +26,18 @@ class CategoryController extends Controller
 
         return to_route('categories.index');
     }
+
+    public function edit(Category $category)
+    {
+        return view('categories.edit', [
+            'category' => $category,
+        ]);
+    }
+
+    public function update(CategoryRequest $request, Category $category)
+    {
+        $category->update($request->safe()->all());
+
+        return to_route('categories.index');
+    }
 }
