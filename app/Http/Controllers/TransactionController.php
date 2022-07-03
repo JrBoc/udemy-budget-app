@@ -33,7 +33,11 @@ class TransactionController extends Controller
 
     public function store(TransactionRequest $request)
     {
-        Transaction::create($request->all());
+        Transaction::create($request->safe([
+            'description',
+            'category_id',
+            'amount',
+        ]));
 
         return to_route('transactions.index');
     }
@@ -48,7 +52,11 @@ class TransactionController extends Controller
 
     public function update(TransactionRequest $request, Transaction $transaction)
     {
-        $transaction->update($request->all());
+        $transaction->update($request->safe([
+            'description',
+            'category_id',
+            'amount',
+        ]));
 
         return to_route('transactions.index');
     }
