@@ -33,7 +33,6 @@ class ViewCategoryTest extends TestCase
             ->assertDontSee($otherCategory->name);
     }
 
-
     /** @test */
     public function it_can_display_all_categories()
     {
