@@ -13,6 +13,10 @@ class Budget extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'budget_date' => 'datetime',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
@@ -38,11 +42,12 @@ class Budget extends Model
     public static function booted()
     {
         self::addGlobalScope('user', function ($query) {
-            $query->where('user_id', auth()->id());
+            $query->where('user_id', auth()->id())->with('transactions');
         });
 
         static::saving(function (Budget $budget) {
             $budget->user_id = $budget->user_id ? : auth()->id();
+            $budget->budget_date = Carbon::parse($budget->budget_date);
         });
     }
 }

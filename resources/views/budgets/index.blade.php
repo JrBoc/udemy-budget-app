@@ -52,11 +52,11 @@
                                 @foreach($budgets as $budget)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('budgets.edit') }}">{{ $budget->category->name }}</a>
+                                            <a href="{{ route('budgets.edit', $budget) }}">{{ $budget->category->name }}</a>
                                         </td>
 
                                         <td>{{ $budget->amount }}</td>
-                                        <td>{{ $budget->balance }}</td>
+                                        <td>{{ $budget->balance() }}</td>
                                         <td>
                                             <x-form action="{{ route('budgets.destroy', $budget) }}" method="delete">
                                                 <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure?')">Remove</button>

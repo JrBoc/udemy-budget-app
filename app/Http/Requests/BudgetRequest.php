@@ -13,7 +13,7 @@ class BudgetRequest extends FormRequest
         return [
             'amount' => ['required', 'min:0', 'numeric'],
             'category_id' => ['required', 'integer', Rule::exists(Category::class, 'id')],
-            'budget_date' => ['required', 'date'],
+            'budget_date' => ['required', 'date_format:M'],
         ];
     }
 }

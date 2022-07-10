@@ -14,7 +14,7 @@ class BudgetFactory extends Factory
             'category_id' => Category::factory()->create(),
             'user_id' => User::factory()->create(),
             'amount' => $this->faker->randomFloat(2, 500, 1000),
-            'budget_date' => now(),
+            'budget_date' => now()->format('M'),
         ];
     }
 }

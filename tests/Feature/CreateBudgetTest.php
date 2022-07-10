@@ -53,13 +53,6 @@ class CreateBudgetTest extends TestCase
             ->assertSessionHasErrors('budget_date');
     }
 
-    /** @test */
-    public function it_cannot_create_budget_with_an_invalid_budget_date()
-    {
-        $this->postBudget(['budget_date' => 'abc'])
-            ->assertSessionHasErrors('budget_date');
-    }
-
     private function postBudget($overwrites = []): \Illuminate\Testing\TestResponse
     {
         $budget = Budget::factory()
