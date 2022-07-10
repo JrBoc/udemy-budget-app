@@ -36,4 +36,11 @@ class BudgetController extends Controller
 
         return to_route('budgets.index');
     }
+
+    public function destroy(Budget $budget)
+    {
+        $budget->delete();
+
+        return to_route('budgets.index');
+    }
 }
