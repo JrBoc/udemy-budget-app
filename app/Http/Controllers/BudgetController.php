@@ -25,4 +25,15 @@ class BudgetController extends Controller
 
         return to_route('budgets.index');
     }
+
+    public function update(BudgetRequest $request, Budget $budget)
+    {
+        $budget->update($request->safe([
+            'amount',
+            'category_id',
+            'budget_date',
+        ]));
+
+        return to_route('budgets.index');
+    }
 }
