@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Auth;
@@ -30,4 +31,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('/categories', CategoryController::class)->except('edit');
     Route::get('categories/{category:slug}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+
+    Route::resource('/budgets', BudgetController::class);
 });
